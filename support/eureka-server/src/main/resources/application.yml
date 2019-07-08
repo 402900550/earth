@@ -1,0 +1,19 @@
+server:
+  port: 5001
+spring:
+  application:
+    name: eureka-server
+
+
+
+eureka:
+  server:
+    enable-self-preservation: false #关闭自我保护
+    eviction-interval-timer-in-ms: 1000  #更新服务状态的时间为1秒
+    response-cache-update-interval-ms: 2000
+
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://127.0.0.1:5001/eureka
