@@ -1,0 +1,22 @@
+
+server:
+  port: 5004
+spring:
+  application:
+    name: demo2
+  cloud:
+    config:
+      discovery:
+        service-id: config-server
+        enabled: true
+      name: demo
+      profile: common,demo,mybatis
+      fail-fast: true
+  main:
+    allow-bean-definition-overriding: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:5001/eureka
+  instance:
+    status-page-url: http://127.0.0.1:5004
