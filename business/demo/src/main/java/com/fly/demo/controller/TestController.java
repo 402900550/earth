@@ -3,6 +3,7 @@ package com.fly.demo.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.fly.demo.config.TestConfig;
 import com.fly.demo.entity.LockHqbInRecord;
+import com.fly.demo.eum.Status;
 import com.fly.demo.service.ILockHqbInRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,8 +45,9 @@ public class TestController {
 
         record.setCoinSymbol("DEMO1");
         record.setMemberId(99999L);
+        record.setStatus(Status.TWO);
         hqbInRecordService.save(record);
-        throw new RuntimeException();
+        //throw new RuntimeException();
     }
 
     public static void main(String[] args){

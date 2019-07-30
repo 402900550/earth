@@ -3,6 +3,7 @@ package com.fly.demo.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fly.demo.eum.Status;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -62,5 +63,8 @@ public class LockHqbInRecord implements Serializable {
      * 活期宝账户id
      */
     private Long walletId;
+
+
+    private Status status;
 
 }
