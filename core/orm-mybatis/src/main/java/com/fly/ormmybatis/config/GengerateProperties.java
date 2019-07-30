@@ -13,7 +13,7 @@ public class GengerateProperties {
 
     private String driverName="com.mysql.jdbc.Driver";
 
-    private String url="jdbc:mysql://localhost:3306/read11?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    private String url="jdbc:mysql://localhost:3306/otc_sync?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
     private String username="root";
 

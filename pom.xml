@@ -20,6 +20,7 @@
 		<sharding.version>3.0.0</sharding.version>
 		<druid_version>1.0.27</druid_version>
 		<mybatisPlus.version>3.0.6</mybatisPlus.version>
+		<seata.version>0.6.1</seata.version>
 	</properties>
 
 	<modules>
@@ -53,8 +54,17 @@
 			<version>${lombok.version}</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>io.seata</groupId>
+			<artifactId>seata-all</artifactId>
+			<version>${seata.version}</version>
+		</dependency>
 
-
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-feign</artifactId>
+			<version>1.4.0.RELEASE</version>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>

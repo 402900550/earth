@@ -32,7 +32,7 @@ public class CodeGengerater {
         globalConfig.setOutputDir(properties.getFilePath() + "/src/main/java");
         globalConfig.setAuthor("qiliao");
         globalConfig.setOpen(false);
-        globalConfig.setIdType(IdType.ID_WORKER);
+        globalConfig.setIdType(IdType.AUTO);
         globalConfig.setMapperName("%sMapper");
         globalConfig.setXmlName("%sMapper");
         globalConfig.setServiceName("%sService");
@@ -54,7 +54,7 @@ public class CodeGengerater {
 
 
         StrategyConfig strategyConfig = new StrategyConfig();
-        strategyConfig.setInclude(properties.getTableNames());
+        strategyConfig.setInclude(properties.getTableNames().split(","));
         strategyConfig.setRestControllerStyle(true);
         strategyConfig.setEntityLombokModel(true);
         strategyConfig.setEntityColumnConstant(true);
@@ -91,7 +91,7 @@ public class CodeGengerater {
         GengerateProperties gengerateProperties=new GengerateProperties();
         gengerateProperties.setPackageName("com.fly.demo");
         gengerateProperties.setModuleName("ttttt");
-        gengerateProperties.setTableNames("lock_coin_detail");
+        gengerateProperties.setTableNames("super_award_record,super_member_community,super_partner_apply_record,super_partner_community");
         gengerateProperties.setFilePath("F:\\earth\\business\\demo");
 
         gengerateCode(gengerateProperties);
