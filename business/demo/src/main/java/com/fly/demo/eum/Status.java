@@ -1,6 +1,7 @@
 package com.fly.demo.eum;
 
 import com.baomidou.mybatisplus.core.enums.IEnum;
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -19,11 +20,11 @@ public enum Status implements IEnum<Integer> {
     TWO("2222"),//1
 
     ;
-
     private String name;
 
 
     @Override
+    @JsonValue
     public Integer getValue() {
         return this.ordinal();
     }
