@@ -15,8 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
 
+    private final TestBiz testBiz;
+
     @Autowired
-    private TestBiz testBiz;
+    public TestController(TestBiz testBiz) {
+        this.testBiz = testBiz;
+    }
 
     @GetMapping("load")
     public void load(){
