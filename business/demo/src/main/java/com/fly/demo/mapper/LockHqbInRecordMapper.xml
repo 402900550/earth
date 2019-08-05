@@ -8,4 +8,12 @@
         SELECT SUM(apply_amount) FROM lock_hqb_in_record
 
     </select>
+    <select id="findStatus" resultType="java.util.Map">
+        show slave status
+    </select>
+    <select id="findStatus2" resultType="com.fly.demo.entity.SlaveStatus">
+          show slave status
+    </select>
+
+
 </mapper>

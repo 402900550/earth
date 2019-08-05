@@ -4,7 +4,10 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.fly.demo.config.TestConfig;
 import com.fly.demo.entity.ImageVo;
 import com.fly.demo.entity.LockHqbInRecord;
+import com.fly.demo.entity.SlaveStatus;
 import com.fly.demo.eum.Status;
+import com.fly.demo.gif.Captcha;
+import com.fly.demo.gif.GifCaptcha;
 import com.fly.demo.service.ILockHqbInRecordService;
 import com.fly.demo.util.HttpUtil;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
@@ -17,7 +20,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.imageio.ImageIO;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
@@ -25,6 +27,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -89,12 +92,22 @@ public class TestController {
         //generator.write(response.getOutputStream());
 
 
-        String capText = captchaProducer.createText();
-        log.info("code:{}", capText);
-        BufferedImage bi = captchaProducer.createImage(capText);
-        ServletOutputStream out = response.getOutputStream();
-        // write the data out
-        ImageIO.write(bi, "jpg", out);
+//        String capText = captchaProducer.createText();
+//        log.info("code:{}", capText);
+//        BufferedImage bi = captchaProducer.createImage(capText);
+//        ServletOutputStream out = response.getOutputStream();
+//        // write the data out
+//        ImageIO.write(bi, "jpg", out);
+
+
+        Map<String,Object> status = hqbInRecordService.findStatus();
+
+        SlaveStatus status2 = hqbInRecordService.findStatus2();
+
+        Captcha s=new GifCaptcha();
+        String text = s.text();
+        s.out(response.getOutputStream());
+
 
     }
 

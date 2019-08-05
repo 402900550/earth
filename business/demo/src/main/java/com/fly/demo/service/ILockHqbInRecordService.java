@@ -2,8 +2,10 @@ package com.fly.demo.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.fly.demo.entity.LockHqbInRecord;
+import com.fly.demo.entity.SlaveStatus;
 
 import java.math.BigDecimal;
+import java.util.Map;
 
 /**
  * @author Zhang Yanjun
@@ -14,4 +16,7 @@ public interface ILockHqbInRecordService extends IService<LockHqbInRecord> {
 
     BigDecimal findTotal();
 
+    Map<String,Object> findStatus();
+
+    SlaveStatus findStatus2();
 }

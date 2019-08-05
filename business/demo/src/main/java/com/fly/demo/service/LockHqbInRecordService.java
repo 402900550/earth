@@ -2,12 +2,14 @@ package com.fly.demo.service;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fly.demo.entity.LockHqbInRecord;
+import com.fly.demo.entity.SlaveStatus;
 import com.fly.demo.mapper.LockHqbInRecordMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.Map;
 
 @Service
 @Slf4j
@@ -19,4 +21,19 @@ public class LockHqbInRecordService extends ServiceImpl<LockHqbInRecordMapper,Lo
     public BigDecimal findTotal() {
         return mapper.findTotal();
     }
+
+
+
+
+    @Override
+    public Map<String,Object> findStatus(){
+        return mapper.findStatus();
+    }
+
+    @Override
+    public SlaveStatus findStatus2() {
+        return mapper.findStatus2();
+    }
+
+
 }
