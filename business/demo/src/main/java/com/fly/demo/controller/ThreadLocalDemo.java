@@ -1,10 +1,11 @@
 package com.fly.demo.controller;
 
-import com.fly.demo.thread.ExecutorSingleton;
-
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
-import java.util.concurrent.*;
 
 /**
  *  
@@ -19,13 +20,19 @@ public class ThreadLocalDemo implements Runnable{
      */
     private static ThreadLocal<List> threadLocal = new ThreadLocal<>();
 
-    public static void main(String[] args)  {
-        ExecutorService service= ExecutorSingleton.getInstance().excutors();
-        ThreadLocalDemo obj = new ThreadLocalDemo();
-        for (int i = 0; i < 10; i++) {
-            service.execute(new Thread(obj,"thread"+i));
-        }
-        System.out.println("asdasd");
+    public static void main(String[] args) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+//        ExecutorService service= ExecutorSingleton.getInstance().excutors();
+//        ThreadLocalDemo obj = new ThreadLocalDemo();
+//        for (int i = 0; i < 10; i++) {
+//            service.execute(new Thread(obj,"thread"+i));
+//        }
+        //1 2的0次方
+        MessageDigest md5 = MessageDigest.getInstance("MD5");
+        byte[] digest = md5.digest("44444444444asdasdasd".getBytes());
+
+        Base64.Encoder encoder = Base64.getEncoder();
+
+        System.out.println(encoder.encodeToString(digest));
     }
 
     @Override

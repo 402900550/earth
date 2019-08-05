@@ -3,10 +3,8 @@ package com.fly.demo.util;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
+import java.util.Base64;
 import java.util.Random;
 
 /**
@@ -17,43 +15,58 @@ import java.util.Random;
  */
 public class ImageCodeGenerator {
 
-    // 图片的宽度。
+    /**
+     * 图片的宽度
+     */
     private int width = 120;
-    // 图片的高度。
+    /**
+     * 图片的高度
+     */
     private int height = 40;
-    // 验证码字符个数
+    /**
+     * 验证码字符个数
+     */
     private int codeCount = 4;
-    // 验证码干扰线数
-    private int lineCount = 50;
-    // 验证码
+    /**
+     * 验证码干扰线数
+     */
+    private int lineCount = 10;
+    /**
+     * 验证码
+     */
     private String code = null;
-    // 验证码图片Buffer
+    /**
+     * 验证码图片Buffer
+     */
     private BufferedImage buffImg = null;
 
-    private char[] codeSequence = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'M', 'N', 'P', 'Q', 'R',
-            'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '2', '3', '4', '5', '6', '7', '8', '9' };
-    // 生成随机数
+    private int[] fs={7,8,9,10,11,12};
+
+    private int[] es={3,4,5,6};
+
+    private char[] operator={'+','×'};
+    /**
+     * 生成随机数
+     */
     private Random random = new Random();
 
     public ImageCodeGenerator() {
-        this.createCode();
+
     }
 
     /**
-     *
-     * @param width 图片宽
+     * @param width  图片宽
      * @param height 图片高
      */
     public ImageCodeGenerator(int width, int height) {
         this.width = width;
         this.height = height;
-        this.createCode();
+
     }
 
     /**
-     *
-     * @param width 图片宽
-     * @param height 图片高
+     * @param width     图片宽
+     * @param height    图片高
      * @param codeCount 字符个数
      * @param lineCount 干扰线条数
      */
@@ -68,36 +81,77 @@ public class ImageCodeGenerator {
     public void createCode() {
         int codeX = 0;
         int fontHeight = 0;
-        fontHeight = height - 5;// 字体的高度
-        codeX = width / (codeCount + 3);// 每个字符的宽度
+        // 字体的高度
+        fontHeight = height - 5;
+        // 每个字符的宽度
+        codeX = width / (codeCount + 3);
 
         // 图像buffer
         buffImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         Graphics2D g = buffImg.createGraphics();
 
         // 将图像填充为白色
-        g.setColor(Color.WHITE);
+        g.setColor(Color.LIGHT_GRAY);
         g.fillRect(0, 0, width, height);
+
+        //生成干扰xian线
+        createRandomLine(this.width,this.height,lineCount,g,100);
 
         // 创建字体
         ImgFontByte imgFont = new ImgFontByte();
         Font font = imgFont.getFont(fontHeight);
-        g.setFont(font);
 
+        g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 25));
         StringBuffer randomCode = new StringBuffer();
+
         // 随机产生验证码字符
-        for (int i = 0; i < codeCount; i++) {
-            String strRand = String.valueOf(codeSequence[random.nextInt(codeSequence.length)]);
-            // 设置字体颜色
-            g.setColor(getRandomColor());
-            // 设置字体位置
-            g.drawString(strRand, (i + 1) * codeX, getRandomNumber(height / 2) + 25);
-            randomCode.append(strRand);
+        String first = fs[random.nextInt(fs.length)] + "";
+        // 设置字体颜色
+        g.setColor(getRandomColor());
+        // 设置字体位置
+        g.drawString(first, (0 + 1) * codeX, getRandomNumber(height / 2) + 25);
+
+        String fuhao = String.valueOf(operator[random.nextInt(operator.length)]);
+        // 设置字体颜色
+        g.setColor(Color.RED);
+        // 设置字体位置
+        g.drawString(fuhao, (2 + 1) * codeX, getRandomNumber(height / 2) + 25);
+
+
+        String end = es[random.nextInt(es.length)]+"";
+        // 设置字体颜色
+        g.setColor(getRandomColor());
+        // 设置字体位置
+        g.drawString(end, (3 + 1) * codeX, getRandomNumber(height / 2) + 25);
+
+        // 设置字体颜色
+        g.setColor(getRandomColor());
+        // 设置字体位置
+        g.drawString("=", (4 + 1) * codeX, getRandomNumber(height / 2) + 25);
+
+        int res=0;
+        switch (fuhao){
+            case "+":
+                 res = Integer.valueOf(first) + Integer.valueOf(end);
+                code=res+"";
+                break;
+            case "-":
+                 res = Integer.valueOf(first) - Integer.valueOf(end);
+                code=res+"";
+                break;
+            case "×":
+                 res = Integer.valueOf(first) * Integer.valueOf(end);
+                code=res+"";
+                break;
+                default:
+                    break;
+
         }
-        code = randomCode.toString();
     }
 
-    /** 获取随机颜色 */
+    /**
+     * 获取随机颜色
+     */
     private Color getRandomColor() {
         int r = getRandomNumber(255);
         int g = getRandomNumber(255);
@@ -105,7 +159,9 @@ public class ImageCodeGenerator {
         return new Color(r, g, b);
     }
 
-    /** 获取随机数 */
+    /**
+     * 获取随机数
+     */
     private int getRandomNumber(int number) {
         return random.nextInt(number);
     }
@@ -128,7 +184,64 @@ public class ImageCodeGenerator {
         return code;
     }
 
-    /** 字体样式类 */
+
+    public String getBase64() throws IOException {
+        this.createCode();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        this.write(outputStream);
+        Base64.Encoder encoder = Base64.getEncoder();
+        StringBuilder builder = new StringBuilder("data:image/jpeg;base64,");
+        return builder.append(encoder.encodeToString(outputStream.toByteArray())).toString();
+    }
+
+    /**
+     * 随机产生干扰线条
+     * @param width
+     * @param height
+     * @param minMany 最少产生的数量
+     * @param g
+     * @param alpha 透明度0~255 0表示全透
+     */
+    private void createRandomLine(int width, int height, int minMany, Graphics g, int alpha) {  // 随机产生干扰线条
+        for (int i = 0; i < getIntRandom(minMany, minMany + 6); i++) {
+            int x1 = getIntRandom(0, (int) (width * 0.6));
+            int y1 = getIntRandom(0, (int) (height * 0.6));
+            int x2 = getIntRandom((int) (width * 0.4), width);
+            int y2 = getIntRandom((int) (height * 0.2), height);
+            g.setColor(getColor(alpha));
+            g.drawLine(x1, y1, x2, y2);
+        }
+        //随机生成一些点
+        for (int i = 0, n = random.nextInt(minMany); i < n; i++) {
+            g.drawRect(random.nextInt(width), random.nextInt(height), 1, 1);
+        }
+    }
+
+    /*** 随机返回一种颜色,透明度0~255 0表示全透
+     * @return 随机返回一种颜色
+     * @param alpha 透明度0~255 0表示全透
+     */
+    private Color getColor(int alpha) {
+        int R = (int) (Math.random() * 255);
+        int G = (int) (Math.random() * 255);
+        int B = (int) (Math.random() * 255);
+        return new Color(R, G, B, alpha);
+    }
+
+
+    private int getIntRandom(int start, int end) {
+        if (end < start) {
+            int t = end;
+            end = start;
+            start = t;
+        }
+        int i = start + (int) (Math.random() * (end - start));
+        return i;
+    }
+
+    /**
+     * 字体样式类
+     */
     class ImgFontByte {
         public Font getFont(int fontHeight) {
             try {
@@ -141,12 +254,14 @@ public class ImageCodeGenerator {
         }
 
         private byte[] hex2byte(String str) {
-            if (str == null)
+            if (str == null) {
                 return null;
+            }
             str = str.trim();
             int len = str.length();
-            if (len == 0 || len % 2 == 1)
+            if (len == 0 || len % 2 == 1) {
                 return null;
+            }
 
             byte[] b = new byte[len / 2];
             try {
