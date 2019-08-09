@@ -132,11 +132,15 @@ public class TestController {
         return id;
     }
 
+
+
     public static void main(String[] args) {
-
         System.out.println(8 % 10);
-
-
+//        JPushClient
+//         pushClient=new JPushClient("","");
+//        PushPayload payload=PushPayload.newBuilder().setNotification(null).build();
+//
+//        PushResult result=pushClient.sendPush(payload);
     }
 
 

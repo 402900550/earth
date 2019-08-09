@@ -19,7 +19,7 @@
 		<lombok.version>1.16.22</lombok.version>
 		<sharding.version>3.0.0</sharding.version>
 		<druid_version>1.0.27</druid_version>
-		<mybatisPlus.version>3.0.6</mybatisPlus.version>
+		<mybatisPlus.version>3.1.2</mybatisPlus.version>
 		<seata.version>0.6.1</seata.version>
 	</properties>
 
