@@ -5,6 +5,7 @@ import com.fly.demo.entity.LockHqbInRecord;
 import com.fly.demo.entity.SlaveStatus;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,4 +20,6 @@ public interface ILockHqbInRecordService extends IService<LockHqbInRecord> {
     Map<String,Object> findStatus();
 
     SlaveStatus findStatus2();
+
+    List<LockHqbInRecord> findAll();
 }

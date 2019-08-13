@@ -13,13 +13,13 @@ spring:
           password: huihui123
           search-paths: /configs
       fail-fast: true
-    stream:
-      kafka:
-        binder:
-          brokers: 127.0.0.1:9092
-          auto-create-topics: true
-          auto-add-partitions: true
-          min-partition-count: 1
+#    stream:
+#      kafka:
+#        binder:
+#          brokers: 127.0.0.1:9092
+#          auto-create-topics: true
+#          auto-add-partitions: true
+#          min-partition-count: 1
 eureka:
   client:
     service-url:
@@ -28,8 +28,8 @@ eureka:
     prefer-ip-address: true
     lease-renewal-interval-in-seconds: 5
     lease-expiration-duration-in-seconds: 10
-management:
-  endpoints:
-    web:
-      exposure:
-        include: bus-refresh
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: bus-refresh

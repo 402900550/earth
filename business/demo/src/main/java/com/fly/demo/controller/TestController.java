@@ -114,7 +114,7 @@ public class TestController {
 
     @GetMapping("list")
     public List<LockHqbInRecord> list(Status status) {
-        List<LockHqbInRecord> list = hqbInRecordService.list();
+        List<LockHqbInRecord> list = hqbInRecordService.findAll();
 
 
         LockHqbInRecord record = new LockHqbInRecord();
