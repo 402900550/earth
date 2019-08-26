@@ -22,4 +22,6 @@ public interface ILockHqbInRecordService extends IService<LockHqbInRecord> {
     SlaveStatus findStatus2();
 
     List<LockHqbInRecord> findAll();
+
+    void testAsync();
 }

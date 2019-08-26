@@ -91,7 +91,7 @@ public class CodeGengerater {
         GengerateProperties gengerateProperties=new GengerateProperties();
         gengerateProperties.setPackageName("com.fly.demo");
         gengerateProperties.setModuleName("ttttt");
-        gengerateProperties.setTableNames("super_award_record,super_member_community,super_partner_apply_record,super_partner_community");
+        gengerateProperties.setTableNames("lock_utt_member,lock_utt_release_plan");
         gengerateProperties.setFilePath("F:\\earth\\business\\demo");
 
         gengerateCode(gengerateProperties);
