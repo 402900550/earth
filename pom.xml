@@ -26,6 +26,7 @@
 	<modules>
 		<module>support</module>
 		<module>business</module>
+		<module>core</module>
 	</modules>
 
 	<dependencies>
