@@ -57,7 +57,6 @@ public class CodeGengerater {
         strategyConfig.setInclude(properties.getTableNames().split(","));
         strategyConfig.setRestControllerStyle(true);
         strategyConfig.setEntityLombokModel(true);
-        strategyConfig.setEntityColumnConstant(false);
         strategyConfig.setNaming(NamingStrategy.underline_to_camel);
         strategyConfig.setColumnNaming(NamingStrategy.underline_to_camel);
 
