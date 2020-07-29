@@ -57,7 +57,7 @@ public class CodeGengerater {
         strategyConfig.setInclude(properties.getTableNames().split(","));
         strategyConfig.setRestControllerStyle(true);
         strategyConfig.setEntityLombokModel(true);
-        strategyConfig.setEntityColumnConstant(true);
+        strategyConfig.setEntityColumnConstant(false);
         strategyConfig.setNaming(NamingStrategy.underline_to_camel);
         strategyConfig.setColumnNaming(NamingStrategy.underline_to_camel);
 
@@ -100,7 +100,8 @@ public class CodeGengerater {
                 "pgw_instance_info," +
                 "pgw_instance_seqno," +
                 "pgw_instance_trans_type_config," +
-                "pgw_trans_type, ptr_account");
+                "pgw_trans_type," +
+                "ptr_account");
         gengerateProperties.setFilePath("D:\\ideaspace\\earth\\business\\demo");
 
         gengerateCode(gengerateProperties);
